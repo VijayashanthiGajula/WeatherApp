@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>WEATHERLY</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1 class="brand">WEATHERLY</h1>
+        <p class="tagline">Lookup current weather for any city</p>
+      </header>
+
+      <form id="weather-form" class="card form" aria-label="Get weather">
+        <div class="fields">
+          <div class="field">
+            <label for="city">City</label>
+            <input id="city" name="city" type="text" placeholder="e.g. Sydney" required />
+          </div>
+          <div class="field">
+            <label for="country">Country (code or name)</label>
+            <input id="country" name="country" type="text" placeholder="e.g. AU or Australia" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="get-weather" type="submit" class="btn">Get Weather</button>
+        </div>
+
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+      </form>
+
+      <section id="result" class="card result" hidden>
+        <div class="result-header">
+          <h2 id="location" class="location"></h2>
+          <img id="icon" class="icon" alt="weather icon" />
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <span class="label">Temperature</span>
+            <span id="temp" class="value"></span>
+          </div>
+          <div class="metric">
+            <span class="label">Condition</span>
+            <span id="condition" class="value"></span>
+          </div>
+          <div class="metric">
+            <span class="label">Humidity</span>
+            <span id="humidity" class="value"></span>
+          </div>
+          <div class="metric">
+            <span class="label">Wind</span>
+            <span id="wind" class="value"></span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">Keep your API key out of public repos — see README.</footer>
+    </main>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>

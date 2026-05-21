@@ -1,0 +1,68 @@
+:root{
+  --bg:#f6f7f9;
+  --card:#ffffff;
+  --text:#0f1724;
+  --muted:#6b7280;
+  --accent:#2563eb;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+
+.container{
+  max-width:720px;
+  margin:32px auto;
+  padding:16px;
+}
+
+.header{ text-align:center; margin-bottom:18px }
+.brand{ margin:0; font-size:1.6rem; letter-spacing:1px }
+.tagline{ margin:4px 0 0; color:var(--muted); font-size:0.95rem }
+
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:0 6px 18px rgba(15,23,36,0.06);
+  padding:16px;
+}
+
+.form{ display:flex; flex-direction:column; gap:12px }
+.fields{ display:flex; gap:12px; flex-wrap:wrap }
+.field{ flex:1; min-width:160px; display:flex; flex-direction:column }
+.field label{ font-size:0.85rem; color:var(--muted); margin-bottom:6px }
+.field input{ padding:10px 12px; border-radius:10px; border:1px solid #e6e9ef }
+
+.actions{ display:flex; justify-content:flex-end }
+.btn{
+  background:var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:10px; cursor:pointer;
+  font-weight:600; box-shadow:0 6px 12px rgba(37,99,235,0.12)
+}
+.btn:disabled{ opacity:0.6; cursor:not-allowed }
+
+.message{ color:var(--muted); margin:6px 0 0; font-size:0.9rem }
+
+.result{ margin-top:18px }
+.result-header{ display:flex; align-items:center; gap:14px }
+.location{ margin:0; font-size:1.2rem }
+.icon{ width:64px; height:64px }
+
+.metrics{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px }
+.metric{ background:#fbfdff; padding:10px; border-radius:10px; border:1px solid #f1f5f9 }
+.label{ display:block; font-size:0.8rem; color:var(--muted) }
+.value{ font-size:1rem; font-weight:600 }
+
+.footer{ margin-top:18px; text-align:center; color:var(--muted); font-size:0.85rem }
+
+@media (max-width:520px){
+  .fields{ flex-direction:column }
+  .metrics{ grid-template-columns:1fr }
+  .icon{ width:56px; height:56px }
+}
