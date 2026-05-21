@@ -1,20 +1,11 @@
 // Minimal WEATHERLY frontend (vanilla JS)
-
-// Configure API key here or use ?key=YOUR_KEY in the URL as a fallback.
-const API_KEY = '';
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
-
-// Helper to obtain key from several sources without committing it to the repo
-function getApiKey() {
-  const urlKey = new URLSearchParams(window.location.search).get('key');
-  const stored = localStorage.getItem('OPENWEATHER_API_KEY');
-  return API_KEY || urlKey || stored || '';
-}
 
 // DOM refs
 const form = document.getElementById('weather-form');
 const cityInput = document.getElementById('city');
 const countryInput = document.getElementById('country');
+const apiKeyInput = document.getElementById('api-key');
 const messageEl = document.getElementById('message');
 const resultEl = document.getElementById('result');
 const locationEl = document.getElementById('location');
@@ -23,6 +14,10 @@ const tempEl = document.getElementById('temp');
 const condEl = document.getElementById('condition');
 const humidityEl = document.getElementById('humidity');
 const windEl = document.getElementById('wind');
+
+function getApiKey() {
+  return apiKeyInput.value.trim();
+}
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
@@ -61,7 +56,7 @@ function renderResult(data) {
 async function fetchWeather(q) {
   const key = getApiKey();
   if (!key) {
-    showMessage('API key not set. Add your key to script.js or use ?key=YOUR_KEY', true);
+    showMessage('Please enter your OpenWeatherMap API key in the form.', true);
     return null;
   }
 

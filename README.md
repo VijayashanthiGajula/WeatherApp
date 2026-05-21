@@ -15,11 +15,10 @@ WEATHERLY is a small static site that fetches current weather data from OpenWeat
 ## Setup
 
 1. Obtain an OpenWeatherMap API key: https://home.openweathermap.org/api_keys
-2. Provide the API key to the app without committing it to source control. Options:
+2. Provide the API key to the app without committing it to source control. The page now asks for your key directly in the form.
 
-- Edit `script.js` and set `API_KEY = 'YOUR_KEY'` (not recommended for public repos).
-- Append `?key=YOUR_KEY` to the site URL when testing (quick and avoids editing files).
-- Store in your browser's console: `localStorage.setItem('OPENWEATHER_API_KEY', 'YOUR_KEY')`.
+- Enter the key in the `OpenWeather API Key` field on the page.
+- Optionally save in your browser console for convenience: `localStorage.setItem('OPENWEATHER_API_KEY', 'YOUR_KEY')`.
 
 Note: GitHub Pages is static and cannot hide secrets. For public repos, restrict the key by domain in the OpenWeatherMap settings or proxy requests through a server.
 
