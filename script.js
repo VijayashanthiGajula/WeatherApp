@@ -1,22 +1,37 @@
 // Minimal WEATHERLY frontend (vanilla JS)
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
-// DOM refs
-const form = document.getElementById('weather-form');
-const cityInput = document.getElementById('city');
-const countryInput = document.getElementById('country');
-const apiKeyInput = document.getElementById('api-key');
-const messageEl = document.getElementById('message');
-const resultEl = document.getElementById('result');
-const locationEl = document.getElementById('location');
-const iconEl = document.getElementById('icon');
-const tempEl = document.getElementById('temp');
-const condEl = document.getElementById('condition');
-const humidityEl = document.getElementById('humidity');
-const windEl = document.getElementById('wind');
+let form;
+let cityInput;
+let countryInput;
+let apiKeyInput;
+let messageEl;
+let resultEl;
+let locationEl;
+let iconEl;
+let tempEl;
+let condEl;
+let humidityEl;
+let windEl;
 
 function getApiKey() {
-  return apiKeyInput.value.trim();
+  const entered = apiKeyInput?.value.trim() || '';
+  return entered;
+}
+
+function initDomRefs() {
+  form = document.getElementById('weather-form');
+  cityInput = document.getElementById('city');
+  countryInput = document.getElementById('country');
+  apiKeyInput = document.getElementById('api-key');
+  messageEl = document.getElementById('message');
+  resultEl = document.getElementById('result');
+  locationEl = document.getElementById('location');
+  iconEl = document.getElementById('icon');
+  tempEl = document.getElementById('temp');
+  condEl = document.getElementById('condition');
+  humidityEl = document.getElementById('humidity');
+  windEl = document.getElementById('wind');
 }
 
 function showMessage(text, isError = false) {
@@ -56,7 +71,7 @@ function renderResult(data) {
 async function fetchWeather(q) {
   const key = getApiKey();
   if (!key) {
-    showMessage('Please enter your OpenWeatherMap API key in the form.', true);
+    showMessage('Please enter your OpenWeatherMap API key in the form above.', true);
     return null;
   }
 
@@ -77,18 +92,26 @@ async function fetchWeather(q) {
   }
 }
 
-form.addEventListener('submit', async (ev) => {
-  ev.preventDefault();
-  resetResult();
-  const city = cityInput.value.trim();
-  const country = countryInput.value.trim();
-  if (!city) {
-    showMessage('Please enter a city.', true);
+document.addEventListener('DOMContentLoaded', () => {
+  initDomRefs();
+  if (!form) {
+    console.error('Weatherly initialization failed: form element not found.');
     return;
   }
-  const q = country ? `${city},${country}` : city;
-  const data = await fetchWeather(q);
-  if (data) renderResult(data);
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    resetResult();
+    const city = cityInput.value.trim();
+    const country = countryInput.value.trim();
+    if (!city) {
+      showMessage('Please enter a city.', true);
+      return;
+    }
+    const q = country ? `${city},${country}` : city;
+    const data = await fetchWeather(q);
+    if (data) renderResult(data);
+  });
 });
 
 // Optional: allow user to save key to localStorage for convenience (not persisted here)
